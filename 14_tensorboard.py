@@ -8,10 +8,6 @@ from datetime import datetime
 print(tf.__version__)
 tf.disable_eager_execution()
 
-now = datetime.utcnow().strftime("%Y%m%d%H%M%S")
-root_logdir = "tf_logs"
-logdir = f"./{root_logdir}/run-{now}/"
-
 # Extract data
 housing = fetch_california_housing()
 m, n = housing.data.shape
@@ -22,6 +18,9 @@ ss = StandardScaler()
 scaled_housing_data_plus_bias = ss.fit_transform(housing_data_plus_bias)
 
 # Initialize
+now = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+root_logdir = "tf_logs"
+logdir = f"./{root_logdir}/run-{now}/"
 n_epochs = 1000
 learning_rate = 0.01
 X = tf.constant(scaled_housing_data_plus_bias, dtype=tf.float32, name="X")
