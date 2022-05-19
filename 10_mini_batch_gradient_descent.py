@@ -13,8 +13,8 @@ m, n = housing.data.shape
 housing_data_plus_bias = np.c_[np.ones((m, 1)), housing.data]
 
 def fetch_batch(epoch, batch_index, batch_size):
-    X_batch = np.c_[np.ones((m, 1)), housing.data][batch_index:batch_index+batch_size]
-    y_batch = housing.target.reshape(-1, 1)[batch_index:batch_index+batch_size]
+    X_batch = np.c_[np.ones((m, 1)), housing.data][batch_index*batch_size:batch_index*(batch_size+1)]
+    y_batch = housing.target.reshape(-1, 1)[batch_index*batch_size:batch_index*(batch_size+1)]
     ss = StandardScaler()
     X_batch = ss.fit_transform(X_batch)
     if epoch % 100 == 0:
